@@ -28,8 +28,8 @@ Die Refaktorisierungsmaßnahmen haben folgende Zielsetzung:
 Wenn du die Herausforderung annehmen willst, erstelle einen Pull-Request. Der Report `zbox_rebooking_refactor` soll als Ausgangspunkt dienen.
 
 ### Wie soll ich starten?
-Wenn du dich nicht mit Refaktorisierungsmaßnahmen auskennst, kannst du einige Hinweise im Buch (Qualitätsmanagement in
-der ABAP-Entwicklung)[https://de.espresso-tutorials.com/programmierung_0393.php] finden oder mich kontaktieren:
+Wenn du dich nicht mit Refaktorisierungsmaßnahmen auskennst, kannst du einige Hinweise im Buch [Qualitätsmanagement in
+der ABAP-Entwicklung](https://de.espresso-tutorials.com/programmierung_0393.php) finden oder mich kontaktieren:
 - johannes.gerbershagen@kabelmail.de
 - [jocder auf dem abapforum](https://www.abapforum.com/forum/memberlist.php?mode=viewprofile&u=20652)
 - [SCN](https://people.sap.com/johannes_gerbershagen11)

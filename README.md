@@ -30,8 +30,8 @@ The following refactoring targets are defined in this challenge:
 If you want to accept this challenge, please open a pull-request. You should use the report `zbox_rebooking_refactor` as a starting point.
 
 ### Don't know how to start?
-If you don't know how to start with refactoring, you can find some hints in the book (Qualitätsmanagement in
-der ABAP-Entwicklung)[https://de.espresso-tutorials.com/programmierung_0393.php]
+If you don't know how to start with refactoring, you can find some hints in the book [Qualitätsmanagement in
+der ABAP-Entwicklung](https://de.espresso-tutorials.com/programmierung_0393.php)
 (german) or you can contact me for some hints on:
 - johannes.gerbershagen@kabelmail.de
 - [jocder auf dem abapforum](https://www.abapforum.com/forum/memberlist.php?mode=viewprofile&u=20652)

@@ -19,6 +19,19 @@
     <LENG>000004</LENG>
     <OUTPUTLEN>000004</OUTPUTLEN>
    </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Behälternr.</DDTEXT>
+     <REPTEXT>Behälternr.</REPTEXT>
+     <SCRTEXT_S>Nr.</SCRTEXT_S>
+     <SCRTEXT_M>Behälternr.</SCRTEXT_M>
+     <SCRTEXT_L>Behälternr.</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

@@ -20,6 +20,19 @@
     <DECIMALS>000002</DECIMALS>
     <OUTPUTLEN>000013</OUTPUTLEN>
    </DD04V>
+   <I18N_LANGS>
+    <LANGU>D</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Bruttogewicht</DDTEXT>
+     <REPTEXT>Bruttogewicht</REPTEXT>
+     <SCRTEXT_S>Brutto</SCRTEXT_S>
+     <SCRTEXT_M>Bruttogewicht</SCRTEXT_M>
+     <SCRTEXT_L>Bruttogewicht</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

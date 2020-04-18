@@ -1,0 +1,1223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ECAT" serializer_version="v1.0.0">
+ <VERSIONS>
+  <VERSION>
+   <ECSC VERSION="1.5">
+    <ATTRIBUTES>
+     <ETTOOLNAME>ECATT</ETTOOLNAME>
+     <ETOBJ_GNDT>
+      <VERSION>00000001</VERSION>
+      <TWB_TITLE>Rebooking boxes</TWB_TITLE>
+      <SOFTCOMP/>
+      <TWB_DEP_RF/>
+      <TWB_DEP_RT/>
+      <TWB_STATUS>X</TWB_STATUS>
+      <TWB_RELE>N</TWB_RELE>
+      <FUSER></FUSER>
+      <FDATE></FDATE>
+      <LUSER></LUSER>
+      <LDATE></LDATE>
+      <LTIME></LTIME>
+      <REL_BAS_F/>
+      <REL_BAS_T/>
+      <SERVICE/>
+      <PVNR/>
+      <BACKUP/>
+     </ETOBJ_GNDT>
+     <ETOBJNOVER>
+      <NAME>ZBOX_REBOOKING</NAME>
+      <TYPE>ECSC</TYPE>
+      <TWB_RESP></TWB_RESP>
+      <TWB_DISTL>B</TWB_DISTL>
+      <TWB_EUBOBJ/>
+      <TWB_EUTYPE/>
+      <DEVCLASS></DEVCLASS>
+      <MASTERLANG>E</MASTERLANG>
+      <TADIR_RESP></TADIR_RESP>
+      <FRANGE>--</FRANGE>
+      <BCSET_MODE/>
+      <API_MODE/>
+      <COL_TSTOBJDATA/>
+      <NO_TRANSLATION/>
+     </ETOBJNOVER>
+     <ETOBJ_DOC>
+      <SEARCH_1/>
+      <SEARCH_2/>
+      <SEARCH_3/>
+      <SEARCH_4/>
+      <SEARCH_5/>
+      <SEARCH_6/>
+      <SEARCH_7/>
+      <SEARCH_8/>
+      <SEARCH_9/>
+      <SEARCH_10/>
+      <S_DOC_ID/>
+      <S_OBJ_ID/>
+      <S_DOC_TITL/>
+     </ETOBJ_DOC>
+     <ETOBJ_CNST>
+      <TWB_DEP_S/>
+      <TWB_DEPV_S/>
+      <TWB_DEP_L/>
+      <TWB_DEPV_L/>
+      <TWB_USE_A/>
+      <TWB_USE_P/>
+      <TWB_USE_H/>
+      <TWB_USE_E/>
+      <REUSE/>
+      <TWB_DEP_C/>
+      <TWB_DEP_VC/>
+      <TWB_DEP_F/>
+      <TWB_DEP_VF/>
+      <TWB_DEP_P/>
+      <TWB_DEP_VP/>
+      <TWB_DEP_DB/>
+      <TWB_DEPVDB/>
+      <TWB_WKREQ>0.0</TWB_WKREQ>
+      <TWB_WKUNIT>MIN</TWB_WKUNIT>
+      <TWB_PRIO>3</TWB_PRIO>
+     </ETOBJ_CNST>
+     <ETSC_TSYS>
+      <SYSTEMDATA>SYSTEM_LOCAL</SYSTEMDATA>
+      <TESTSYSTEM/>
+     </ETSC_TSYS>
+     <ETSYS_COMP_TABTYPE/>
+     <ETSYS_REL_TABTYPE/>
+     <ETBF_OBJ_TABTYPE/>
+     <ETBF_VER_TABTYPE/>
+     <ETSCR_SUT_MD_TT/>
+    </ATTRIBUTES>
+    <SCRIPT>
+     <ETXML_LINE_TABTYPE>
+      <item>* setup</item>
+      <item> FUN( ZIMPORT_BUNDLE_FROM_TDC, IMPORT_BUNDLE ).</item>
+      <item/>
+      <item>* when</item>
+      <item> MESSAGE( msg_1 ).</item>
+      <item>   SAPGUI ( SAPGUI_1 ).</item>
+      <item> ENDMESSAGE( e_msg_1 ).</item>
+      <item/>
+      <item>* then</item>
+      <item>* find new spool request</item>
+      <item> DO e_msg_1[1]-midx.</item>
+      <item>   IF e_msg_1[&amp;LPC]-msgid = &apos;ZBOX_MANAGEMENT&apos; AND e_msg_1[&amp;LPC]-msgnr = &apos;000&apos;.</item>
+      <item>     spool_request_id = e_msg_1[&amp;LPC]-msgv1.</item>
+      <item>   ENDIF.</item>
+      <item> ENDDO.</item>
+      <item> LOG( spool_request_id ).</item>
+      <item/>
+      <item> IF update_snapshot = &apos;X&apos;.</item>
+      <item>   CALLSTATIC( ZSPOOL_SNAPSHOTS , CREATE_SNAPSHOT , CREATE_SNAPSHOT ).</item>
+      <item> ELSE.</item>
+      <item>   CALLSTATIC( ZSPOOL_SNAPSHOTS, COMPARE_SNAPSHOT, COMPARE_SNAPSHOT ).</item>
+      <item> ENDIF.</item>
+     </ETXML_LINE_TABTYPE>
+    </SCRIPT>
+    <PARAMETERS>
+     <ETPAR_GUIX>
+      <item>
+       <PNAME>UPDATE_SNAPSHOT</PNAME>
+       <PTYP>I</PTYP>
+       <PDESC>Update snapshots</PDESC>
+       <PINDEX>0008</PINDEX>
+       <PREF_TYPE>DTEL</PREF_TYPE>
+       <PREF_NAME>SAP_BOOL</PREF_NAME>
+       <PDOM>SAP_BOOL</PDOM>
+       <PDATTYP>CHAR</PDATTYP>
+       <PDATLEN>0001</PDATLEN>
+       <PINTTYP>C</PINTTYP>
+       <PINTLEN>000002</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0001</SORT_LNR>
+       <PREF_NAME2>SAP_BOOL</PREF_NAME2>
+       <TAB_INDEX>0</TAB_INDEX>
+      </item>
+      <item>
+       <PNAME>SAPGUI_1</PNAME>
+       <PTYP>X</PTYP>
+       <PDESC>ZBOX_REBOOK - ZBOX_REBOOKING_REFACTOR - 1000</PDESC>
+       <PINDEX>0006</PINDEX>
+       <PGROUP>SAPGUI</PGROUP>
+       <XMLREF_TYP>G</XMLREF_TYP>
+       <PSTRUC_TYP>T</PSTRUC_TYP>
+       <PREF_NAME>SAPGUI</PREF_NAME>
+       <PDATLEN>0000</PDATLEN>
+       <PINTLEN>000000</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0001</SORT_LNR>
+       <PREF_NAME2>SAPGUI</PREF_NAME2>
+       <VALUE>&lt;VALUE&gt;</VALUE>
+       <VAL_TYPE>T</VAL_TYPE>
+       <TAB_INDEX>0</TAB_INDEX>
+       <DEEP_STRU/>
+       <DEEP_DATA>
+        <GuiScripting xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xsi:noNamespaceSchemaLocation="SAPGUI.xsd">
+         <ResetGUI>X</ResetGUI>
+         <ConnectionId readonly="false">/app/con[0]</ConnectionId>
+         <SessionId readonly="false">ses[1]</SessionId>
+         <SystemInfo>
+          <SystemName readonly="true">NPL</SystemName>
+          <Client readonly="true">001</Client>
+          <Language readonly="true">EN</Language>
+          <Codepage readonly="true">4110</Codepage>
+          <LowSpeedConnection readonly="true"/>
+          <ApplicationServer readonly="true">vhcalnplci</ApplicationServer>
+          <ScriptingEngine>
+           <GUI readonly="true">WinGUI</GUI>
+           <MajorVersion readonly="true">7300</MajorVersion>
+           <Revision readonly="true">3</Revision>
+           <PatchLevel readonly="true">10</PatchLevel>
+           <MinorVersion readonly="true">249</MinorVersion>
+          </ScriptingEngine>
+         </SystemInfo>
+         <ProcessedScreen>
+          <Active>X</Active>
+          <Available>X</Available>
+          <Transaction>ZBOX_REBOOK</Transaction>
+          <Program>ZBOX_REBOOKING_REFACTOR</Program>
+          <ScreenNumber>1000</ScreenNumber>
+          <UserChangedState>
+           <GuiElement>
+            <Name>wnd[0]</Name>
+            <Type>GuiMainWindow</Type>
+            <Id>wnd[0]</Id>
+            <State>
+             <Method>
+              <Name>resizeWorkingPane</Name>
+              <Parameter type="long">112</Parameter>
+              <Parameter type="long">27</Parameter>
+              <Parameter type="bool"> </Parameter>
+             </Method>
+            </State>
+           </GuiElement>
+           <GuiElement>
+            <Name>P_PLANT</Name>
+            <Type>GuiCTextField</Type>
+            <Id>wnd[0]/usr/ctxtP_PLANT</Id>
+            <State>
+             <SetProperty>
+              <Name>text</Name>
+              <Value type="string">1000</Value>
+             </SetProperty>
+             <SetProperty>
+              <Name>caretPosition</Name>
+              <Value type="long">4</Value>
+             </SetProperty>
+            </State>
+           </GuiElement>
+           <GuiElement>
+            <Name>wnd[0]</Name>
+            <Type>GuiMainWindow</Type>
+            <Id>wnd[0]</Id>
+            <State>
+             <Method>
+              <Name>sendVKey</Name>
+              <Parameter type="long">8</Parameter>
+             </Method>
+            </State>
+           </GuiElement>
+          </UserChangedState>
+         </ProcessedScreen>
+         <ProcessedScreen>
+          <Active>X</Active>
+          <Transaction>ZBOX_REBOOK</Transaction>
+          <Program>ZBOX_REBOOKING_REFACTOR</Program>
+          <ScreenNumber>100</ScreenNumber>
+          <UserChangedState>
+           <GuiElement>
+            <Name>ZBOX_DELIVERY-BOX_NO</Name>
+            <Type>GuiCTextField</Type>
+            <Id>wnd[0]/usr/tblZBOX_REBOOKING_REFACTORBOX_TABLE_CONTROL/ctxtZBOX_DELIVERY-BOX_NO[0,0]</Id>
+            <State>
+             <SetProperty>
+              <Name>text</Name>
+              <Value type="string">10</Value>
+             </SetProperty>
+            </State>
+           </GuiElement>
+           <GuiElement>
+            <Name>wnd[0]</Name>
+            <Type>GuiMainWindow</Type>
+            <Id>wnd[0]</Id>
+            <State>
+             <Method>
+              <Name>sendVKey</Name>
+              <Parameter type="long">0</Parameter>
+             </Method>
+            </State>
+           </GuiElement>
+          </UserChangedState>
+         </ProcessedScreen>
+         <ProcessedScreen>
+          <Active>X</Active>
+          <Transaction>ZBOX_REBOOK</Transaction>
+          <Program>ZBOX_REBOOKING_REFACTOR</Program>
+          <ScreenNumber>100</ScreenNumber>
+          <UserChangedState>
+           <GuiElement>
+            <Name>wnd[0]</Name>
+            <Type>GuiMainWindow</Type>
+            <Id>wnd[0]</Id>
+            <State>
+             <Method>
+              <Name>sendVKey</Name>
+              <Parameter type="long">11</Parameter>
+             </Method>
+            </State>
+           </GuiElement>
+          </UserChangedState>
+         </ProcessedScreen>
+         <ProcessedScreen>
+          <Active>X</Active>
+          <Transaction>ZBOX_REBOOK</Transaction>
+          <Program>SAPLSTXBC</Program>
+          <ScreenNumber>100</ScreenNumber>
+          <UserChangedState>
+           <GuiElement>
+            <Name>SSFPP-TDNEWID</Name>
+            <Type>GuiCheckBox</Type>
+            <Id>wnd[1]/usr/chkSSFPP-TDNEWID</Id>
+            <State>
+             <SetProperty>
+              <Name>selected</Name>
+              <Value type="bool">X</Value>
+             </SetProperty>
+             <Method>
+              <Name>setFocus</Name>
+             </Method>
+            </State>
+           </GuiElement>
+           <GuiElement>
+            <Name>wnd[1]</Name>
+            <Type>GuiModalWindow</Type>
+            <Id>wnd[1]</Id>
+            <State>
+             <Method>
+              <Name>sendVKey</Name>
+              <Parameter type="long">86</Parameter>
+             </Method>
+            </State>
+           </GuiElement>
+          </UserChangedState>
+         </ProcessedScreen>
+         <ProcessedScreen>
+          <Active>X</Active>
+          <Transaction>ZBOX_REBOOK</Transaction>
+          <Program>ZBOX_REBOOKING_REFACTOR</Program>
+          <ScreenNumber>100</ScreenNumber>
+          <Message>
+           <Type readonly="true">S</Type>
+           <Text readonly="true">Spool request 15.002 created.</Text>
+           <Id readonly="true">ZBOX_MANAGEMENT     </Id>
+           <Number readonly="true">000</Number>
+           <Parameter1 readonly="true">15.002</Parameter1>
+           <Parameter2 readonly="true"/>
+           <Parameter3 readonly="true"/>
+           <Parameter4 readonly="true"/>
+           <AsPopup readonly="true"> </AsPopup>
+          </Message>
+         </ProcessedScreen>
+        </GuiScripting>
+       </DEEP_DATA>
+      </item>
+      <item>
+       <PNAME>SPOOL_REQUEST_ID</PNAME>
+       <PTYP>V</PTYP>
+       <PDESC>Spool request number</PDESC>
+       <PINDEX>0007</PINDEX>
+       <PREF_TYPE>DTEL</PREF_TYPE>
+       <PREF_NAME>RSPOID</PREF_NAME>
+       <PDOM>RSPOID</PDOM>
+       <PDATTYP>INT4</PDATTYP>
+       <PDATLEN>0010</PDATLEN>
+       <PINTTYP>I</PINTTYP>
+       <PINTLEN>000004</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0002</SORT_LNR>
+       <PREF_NAME2>RSPOID</PREF_NAME2>
+       <TAB_INDEX>0</TAB_INDEX>
+      </item>
+      <item>
+       <PNAME>CREATE_SNAPSHOT</PNAME>
+       <PTYP>X</PTYP>
+       <PINDEX>0002</PINDEX>
+       <PGROUP>CALLSTATIC</PGROUP>
+       <XMLREF_TYP>Q</XMLREF_TYP>
+       <PSTRUC_TYP>T</PSTRUC_TYP>
+       <PREF_NAME>ZSPOOL_SNAPSHOTS</PREF_NAME>
+       <PDATLEN>0000</PDATLEN>
+       <PINTLEN>000000</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0002</SORT_LNR>
+       <PREF_NAME2>ZSPOOL_SNAPSHOTS</PREF_NAME2>
+       <VALUE>&lt;VALUE&gt;</VALUE>
+       <VAL_TYPE>T</VAL_TYPE>
+       <TAB_INDEX>0</TAB_INDEX>
+       <DEF_EXT>CREATE_SNAPSHOT</DEF_EXT>
+       <DEEP_STRU>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.sap.com/2003/05/eCATT/abap" version="1.0">
+         <xsd:element name="ZSPOOL_SNAPSHOTS">
+          <xsd:complexType>
+           <xsd:sequence>
+            <xsd:element name="IMPORTING">
+             <xsd:complexType>
+              <xsd:sequence>
+               <xsd:element name="SPOOL_REQUEST_ID">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=RSPOID=A=I=L=000010=doc=Spool request number</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SNAPSHOT_PACKAGE">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=DEVCLASS=A=C=L=000030=doc=</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SNAPSHOT_NAME">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=ETOBJ_NAME=A=C=L=000030=doc=eCATT Object</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SNAPSHOT_VERSION">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=ETOBJ_VER=A=N=L=000008=doc=</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="TRANSPORT_REQUEST">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=TRKORR=A=C=L=000020=doc=</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+              </xsd:sequence>
+             </xsd:complexType>
+            </xsd:element>
+           </xsd:sequence>
+          </xsd:complexType>
+          <attribute name="method" type="string" use="required"/>
+         </xsd:element>
+        </xsd:schema>
+       </DEEP_STRU>
+       <DEEP_DATA>
+        <abap_oo:ZSPOOL_SNAPSHOTS xmlns:abap_oo="http://xml.sap.com/2003/05/eCATT/abap" method="CREATE_SNAPSHOT">
+         <IMPORTING>
+          <SPOOL_REQUEST_ID>
+           <valueRefName>SPOOL_REQUEST_ID</valueRefName>
+          </SPOOL_REQUEST_ID>
+          <SNAPSHOT_PACKAGE>$BOX_TEST</SNAPSHOT_PACKAGE>
+          <SNAPSHOT_NAME>ZBOX_REBOOKING</SNAPSHOT_NAME>
+          <SNAPSHOT_VERSION>1</SNAPSHOT_VERSION>
+          <TRANSPORT_REQUEST/>
+         </IMPORTING>
+        </abap_oo:ZSPOOL_SNAPSHOTS>
+       </DEEP_DATA>
+      </item>
+      <item>
+       <PNAME>MSG_1</PNAME>
+       <PTYP>X</PTYP>
+       <PDESC>Rules for Message Check eCATT Command MESSAGE</PDESC>
+       <PINDEX>0005</PINDEX>
+       <PGROUP>MESSAGE</PGROUP>
+       <XMLREF_TYP>M</XMLREF_TYP>
+       <PSTRUC_TYP>T</PSTRUC_TYP>
+       <PREF_NAME>ETMSG_DEF_TABTYPE</PREF_NAME>
+       <PDATLEN>0000</PDATLEN>
+       <PINTLEN>000000</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0003</SORT_LNR>
+       <PREF_NAME2>ETMSG_DEF_TABTYPE</PREF_NAME2>
+       <VAL_TYPE>T</VAL_TYPE>
+       <TAB_INDEX>0</TAB_INDEX>
+       <DEEP_STRU>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.sap.com/2003/05/eCATT/ddic" version="1.0">
+         <xsd:complexType name="ETMSG_DEF_TABTYPE">
+          <annotation>
+           <documentation>I==O==C=T=K==D=ETMSG_DEF_TABTYPE=A=h=L=000000=doc=Rules for Message Check eCATT Command MESSAGE</documentation>
+          </annotation>
+          <sequence>
+           <element name="item" type="ETMSG_DEF" minOccurs="0" maxOccurs="unbounded"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETMSG_DEF">
+          <annotation>
+           <documentation>I==O==C=S=K==D=ETMSG_DEF=A=v=L=000000=doc=Rules for Message</documentation>
+          </annotation>
+          <sequence>
+           <element name="MODE" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_MODE=A=C=L=000001=doc=Message Mode (A=Al</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="1"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="EXIT" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_EXIT=A=C=L=000001=doc=Message Terminatio</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="1"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGTYP" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=BDC_MART=A=C=L=000001=doc=Batch input message</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="1"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGID" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_ID=A=g=L=000000=doc=Message ID as STRING</documentation>
+            </annotation>
+           </element>
+           <element name="MSGNR" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_KEY=A=g=L=000000=doc=Message Key as STRI</documentation>
+            </annotation>
+           </element>
+           <element name="SELECTION" minOccurs="0" type="ETMSG_SEL_TABTYPE"/>
+           <element name="RETURNING" minOccurs="0" type="ETMSG_RET_TABTYPE"/>
+           <element name="MSGV1" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGV2" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGV3" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGV4" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETMSG_SEL_TABTYPE">
+          <annotation>
+           <documentation>I==O==C=T=K==D=ETMSG_SEL_TABTYPE=A=h=L=000000=doc=MESSAGE Ru</documentation>
+          </annotation>
+          <sequence>
+           <element name="item" type="ETMSG_SEL" minOccurs="0" maxOccurs="unbounded"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETMSG_RET_TABTYPE">
+          <annotation>
+           <documentation>I==O==C=T=K==D=ETMSG_RET_TABTYPE=A=h=L=000000=doc=MESSAGE Ru</documentation>
+          </annotation>
+          <sequence>
+           <element name="item" type="ETMSG_RET" minOccurs="0" maxOccurs="unbounded"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETMSG_SEL">
+          <annotation>
+           <documentation>I==O==C=S=K==D=ETMSG_SEL=A=v=L=000000=doc=MESSAGE Rules Rows</documentation>
+          </annotation>
+          <sequence>
+           <element name="ATTRIBUTE" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=Name of Selection Field</documentation>
+            </annotation>
+           </element>
+           <element name="ACTION" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETCHECK_ACTION=A=C=L=000002=doc=eCATT: Check A</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="2"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="VALUE" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=Value</documentation>
+            </annotation>
+           </element>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETMSG_RET">
+          <annotation>
+           <documentation>I==O==C=S=K==D=ETMSG_RET=A=v=L=000000=doc=MESSAGE Rules Retu</documentation>
+          </annotation>
+          <sequence>
+           <element name="ATTRIBUTE" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=Name of Selection Field</documentation>
+            </annotation>
+           </element>
+           <element name="PARAMETER" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=Value</documentation>
+            </annotation>
+           </element>
+          </sequence>
+         </xsd:complexType>
+        </xsd:schema>
+       </DEEP_STRU>
+       <DEEP_DATA>
+        <ddic:ETMSG_DEF_TABTYPE xmlns:ddic="http://xml.sap.com/2003/05/eCATT/ddic" empty="true">
+         <item>
+          <MODE/>
+          <EXIT/>
+          <MSGTYP/>
+          <MSGID/>
+          <MSGNR/>
+          <SELECTION empty="true">
+           <item>
+            <ATTRIBUTE/>
+            <ACTION/>
+            <VALUE/>
+           </item>
+          </SELECTION>
+          <RETURNING empty="true">
+           <item>
+            <ATTRIBUTE/>
+            <PARAMETER/>
+           </item>
+          </RETURNING>
+          <MSGV1/>
+          <MSGV2/>
+          <MSGV3/>
+          <MSGV4/>
+         </item>
+        </ddic:ETMSG_DEF_TABTYPE>
+       </DEEP_DATA>
+      </item>
+      <item>
+       <PNAME>E_MSG_1</PNAME>
+       <PTYP>X</PTYP>
+       <PDESC>Collected Messages Before ENDMESSAGE</PDESC>
+       <PINDEX>0003</PINDEX>
+       <PGROUP>ENDMESSAGE</PGROUP>
+       <XMLREF_TYP>N</XMLREF_TYP>
+       <PSTRUC_TYP>T</PSTRUC_TYP>
+       <PREF_NAME>ETMSG_RES_TABTYPE</PREF_NAME>
+       <PDATLEN>0000</PDATLEN>
+       <PINTLEN>000000</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0004</SORT_LNR>
+       <PREF_NAME2>ETMSG_RES_TABTYPE</PREF_NAME2>
+       <VAL_TYPE>T</VAL_TYPE>
+       <TAB_INDEX>0</TAB_INDEX>
+       <DEEP_STRU>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.sap.com/2003/05/eCATT/ddic" version="1.0">
+         <xsd:complexType name="ETMSG_RES_TABTYPE">
+          <annotation>
+           <documentation>I==O==C=T=K==D=ETMSG_RES_TABTYPE=A=h=L=000000=doc=Collected Messages Before ENDMESSAGE</documentation>
+          </annotation>
+          <sequence>
+           <element name="item" type="ETMSG_RES" minOccurs="0" maxOccurs="unbounded"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETMSG_RES">
+          <annotation>
+           <documentation>I==O==C=S=K==D=ETMSG_RES=A=v=L=000000=doc=Collected Message</documentation>
+          </annotation>
+          <sequence>
+           <element name="MIDX" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_INDX=A=N=L=000004=doc=Message Index</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <pattern value="\d+"/>
+              <maxLength value="4"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MODE" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_MODE=A=C=L=000001=doc=Message Mode (A=Al</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="1"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGTYP" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=BDC_MART=A=C=L=000001=doc=Batch input message</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="1"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGID" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_ID=A=g=L=000000=doc=Message ID as STRING</documentation>
+            </annotation>
+           </element>
+           <element name="MSGNR" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_KEY=A=g=L=000000=doc=Message Key as STRI</documentation>
+            </annotation>
+           </element>
+           <element name="MSGV1" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGV2" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGV3" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGV4" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=SYMSGV=A=C=L=000050=doc=Message Variable</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="50"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="RFCDEST" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=RFCDEST=A=C=L=000032=doc=Logical destination (</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="32"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="OBJ_LNR" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETOBJ_LNR=A=N=L=000008=doc=Current Number of O</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <pattern value="\d+"/>
+              <maxLength value="8"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="SCR_LNR" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETSCR_LNR=A=N=L=000010=doc=eCATT Current Numbe</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <pattern value="\d+"/>
+              <maxLength value="10"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="MSGTEXT" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_TEXT=A=g=L=000000=doc=Message Text</documentation>
+            </annotation>
+           </element>
+           <element name="MSGKIND" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_KIND=A=C=L=000012=doc=Message Type:T100,</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="12"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="EXIT" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_EXIT=A=C=L=000001=doc=Message Terminatio</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="1"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="EXCEPTION_ID" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_EXC_ID=A=C=L=000030=doc=Exception ID (Te</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="30"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="EXCEPTION_CLASS" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETMSG_EXC_CLASS=A=C=L=000030=doc=Exception Cla</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="30"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="ESF_SYMPTOM" minOccurs="0">
+            <annotation>
+             <documentation>I==O==C==K==D=ETESF_MSG_SYMPTOM=A=C=L=000015=doc=ESF LCP Mes</documentation>
+            </annotation>
+            <simpleType>
+             <restriction base="string">
+              <maxLength value="15"/>
+             </restriction>
+            </simpleType>
+           </element>
+           <element name="ESF_LIFETIME" minOccurs="0" type="int">
+            <annotation>
+             <documentation>I==O==C==K==D=ETESF_MSG_LIFETIME=A=I=L=000010=doc=ESF LCP Me</documentation>
+            </annotation>
+           </element>
+           <element name="VAR_PARTS" minOccurs="0" type="ETNAME_VALUE_TABTYPE"/>
+           <element name="ESF_ORIGIN" minOccurs="0" type="ETESF_MSG_LOCATION"/>
+           <element name="ESF_ENVIRONMENT" minOccurs="0" type="ETESF_MSG_LOCATION_TABTYPE"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETNAME_VALUE_TABTYPE">
+          <annotation>
+           <documentation>I==O==C=T=K==D=ETNAME_VALUE_TABTYPE=A=h=L=000000=doc=eCATT T</documentation>
+          </annotation>
+          <sequence>
+           <element name="item" type="ETNAME_VALUE" minOccurs="0" maxOccurs="unbounded"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETESF_MSG_LOCATION">
+          <annotation>
+           <documentation>I==O==C=S=K==D=ETESF_MSG_LOCATION=A=v=L=000000=doc=ESF LCP M</documentation>
+          </annotation>
+          <sequence>
+           <element name="BO_NAME" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=</documentation>
+            </annotation>
+           </element>
+           <element name="BO_NODE_NAME" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=</documentation>
+            </annotation>
+           </element>
+           <element name="BO_NODE_ID" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D=SESF_BO_NODE_ID=A=g=L=000070=doc=SESF_BO_NODE_</documentation>
+            </annotation>
+           </element>
+           <element name="ATTRIBUTES" minOccurs="0" type="ETESF_STRING_TABTYPE"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETESF_MSG_LOCATION_TABTYPE">
+          <annotation>
+           <documentation>I==O==C=T=K==D=ETESF_MSG_LOCATION_TABTYPE=A=h=L=000000=doc=E</documentation>
+          </annotation>
+          <sequence>
+           <element name="item" type="ETESF_MSG_LOCATION" minOccurs="0" maxOccurs="unbounded"/>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETNAME_VALUE">
+          <annotation>
+           <documentation>I==O==C=S=K==D=ETNAME_VALUE=A=v=L=000000=doc=eCATT API Name</documentation>
+          </annotation>
+          <sequence>
+           <element name="NAME" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=Name</documentation>
+            </annotation>
+           </element>
+           <element name="VALUE" minOccurs="0" type="string">
+            <annotation>
+             <documentation>I==O==C==K==D==A=g=L=000000=doc=Value</documentation>
+            </annotation>
+           </element>
+          </sequence>
+         </xsd:complexType>
+         <xsd:complexType name="ETESF_STRING_TABTYPE">
+          <annotation>
+           <documentation>I==O==C=T=K==D=ETESF_STRING_TABTYPE=A=h=L=000000=doc=eCATT E</documentation>
+          </annotation>
+          <sequence>
+           <element name="item" type="string" minOccurs="0" maxOccurs="unbounded">
+            <annotation>
+             <documentation>I==O==C==K=T=D==A=g=L=000000=doc=</documentation>
+            </annotation>
+            <complexType>
+             <sequence>
+              <element name="TABLE_LINE">
+               <xsd:annotation>
+                <xsd:documentation>I==O==C==K==D==A=g=L=000000=doc=</xsd:documentation>
+               </xsd:annotation>
+              </element>
+             </sequence>
+            </complexType>
+           </element>
+          </sequence>
+         </xsd:complexType>
+        </xsd:schema>
+       </DEEP_STRU>
+       <DEEP_DATA>
+        <ddic:ETMSG_RES_TABTYPE xmlns:ddic="http://xml.sap.com/2003/05/eCATT/ddic" empty="true">
+         <item>
+          <MIDX/>
+          <MODE/>
+          <MSGTYP/>
+          <MSGID/>
+          <MSGNR/>
+          <MSGV1/>
+          <MSGV2/>
+          <MSGV3/>
+          <MSGV4/>
+          <RFCDEST/>
+          <OBJ_LNR/>
+          <SCR_LNR/>
+          <MSGTEXT/>
+          <MSGKIND/>
+          <EXIT/>
+          <EXCEPTION_ID/>
+          <EXCEPTION_CLASS/>
+          <ESF_SYMPTOM/>
+          <ESF_LIFETIME/>
+          <VAR_PARTS empty="true">
+           <item>
+            <NAME/>
+            <VALUE/>
+           </item>
+          </VAR_PARTS>
+          <ESF_ORIGIN>
+           <BO_NAME/>
+           <BO_NODE_NAME/>
+           <BO_NODE_ID/>
+           <ATTRIBUTES empty="true">
+            <item>
+             <TABLE_LINE/>
+            </item>
+           </ATTRIBUTES>
+          </ESF_ORIGIN>
+          <ESF_ENVIRONMENT empty="true">
+           <item>
+            <BO_NAME/>
+            <BO_NODE_NAME/>
+            <BO_NODE_ID/>
+            <ATTRIBUTES empty="true">
+             <item>
+              <TABLE_LINE/>
+             </item>
+            </ATTRIBUTES>
+           </item>
+          </ESF_ENVIRONMENT>
+         </item>
+        </ddic:ETMSG_RES_TABTYPE>
+       </DEEP_DATA>
+      </item>
+      <item>
+       <PNAME>COMPARE_SNAPSHOT</PNAME>
+       <PTYP>X</PTYP>
+       <PINDEX>0001</PINDEX>
+       <PGROUP>CALLSTATIC</PGROUP>
+       <XMLREF_TYP>Q</XMLREF_TYP>
+       <PSTRUC_TYP>T</PSTRUC_TYP>
+       <PREF_NAME>ZSPOOL_SNAPSHOTS</PREF_NAME>
+       <PDATLEN>0000</PDATLEN>
+       <PINTLEN>000000</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0005</SORT_LNR>
+       <PREF_NAME2>ZSPOOL_SNAPSHOTS</PREF_NAME2>
+       <VALUE>&lt;VALUE&gt;</VALUE>
+       <VAL_TYPE>T</VAL_TYPE>
+       <TAB_INDEX>0</TAB_INDEX>
+       <DEF_EXT>COMPARE_SNAPSHOT</DEF_EXT>
+       <DEEP_STRU>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.sap.com/2003/05/eCATT/abap" version="1.0">
+         <xsd:element name="ZSPOOL_SNAPSHOTS">
+          <xsd:complexType>
+           <xsd:sequence>
+            <xsd:element name="IMPORTING">
+             <xsd:complexType>
+              <xsd:sequence>
+               <xsd:element name="SPOOL_REQUEST_ID">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=RSPOID=A=I=L=000010=doc=</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SNAPSHOT_NAME">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=ETOBJ_NAME=A=C=L=000030=doc=</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="SNAPSHOT_VERSION">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=ETOBJ_VER=A=N=L=000008=doc=</xsd:documentation>
+                </xsd:annotation>
+               </xsd:element>
+              </xsd:sequence>
+             </xsd:complexType>
+            </xsd:element>
+           </xsd:sequence>
+          </xsd:complexType>
+          <attribute name="method" type="string" use="required"/>
+         </xsd:element>
+        </xsd:schema>
+       </DEEP_STRU>
+       <DEEP_DATA>
+        <abap_oo:ZSPOOL_SNAPSHOTS xmlns:abap_oo="http://xml.sap.com/2003/05/eCATT/abap" method="COMPARE_SNAPSHOT">
+         <IMPORTING>
+          <SPOOL_REQUEST_ID>
+           <valueRefName>SPOOL_REQUEST_ID</valueRefName>
+          </SPOOL_REQUEST_ID>
+          <SNAPSHOT_NAME>ZBOX_REBOOKING</SNAPSHOT_NAME>
+          <SNAPSHOT_VERSION>1</SNAPSHOT_VERSION>
+         </IMPORTING>
+        </abap_oo:ZSPOOL_SNAPSHOTS>
+       </DEEP_DATA>
+      </item>
+      <item>
+       <PNAME>IMPORT_BUNDLE</PNAME>
+       <PTYP>X</PTYP>
+       <PDESC>Import bundle from Test-Data-Container</PDESC>
+       <PINDEX>0004</PINDEX>
+       <PGROUP>FUN</PGROUP>
+       <XMLREF_TYP>F</XMLREF_TYP>
+       <PSTRUC_TYP>T</PSTRUC_TYP>
+       <PREF_NAME>ZIMPORT_BUNDLE_FROM_TDC</PREF_NAME>
+       <PDATLEN>0000</PDATLEN>
+       <PINTLEN>000000</PINTLEN>
+       <PDECIMALS>000000</PDECIMALS>
+       <SORT_LNR>0006</SORT_LNR>
+       <PREF_NAME2>ZIMPORT_BUNDLE_FROM_TDC</PREF_NAME2>
+       <VALUE>&lt;VALUE&gt;</VALUE>
+       <VAL_TYPE>T</VAL_TYPE>
+       <TAB_INDEX>0</TAB_INDEX>
+       <DEEP_STRU>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.sap.com/2003/05/eCATT/rfc" version="1.0">
+         <xsd:element name="ZIMPORT_BUNDLE_FROM_TDC">
+          <xsd:complexType>
+           <xsd:sequence>
+            <xsd:element name="IMPORTING">
+             <xsd:complexType>
+              <xsd:sequence>
+               <xsd:element name="TDC">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=ETOBJ_NAME=A=C=L=000030=doc=Testdatacontainer</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="30"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="TDC_VERSION">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=ETOBJ_VER=A=N=L=000008=doc=Version TDC</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:pattern value="\d+"/>
+                  <xsd:maxLength value="8"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="VARIANT">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=ETVAR_ID=A=C=L=000030=doc=Variant name</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="30"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="CONTENT_HANDLER">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=SEOCMPNAME=A=C=L=000030=doc=Handler (method)</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="30"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="DO_COMMIT" default="ABAP_TRUE">
+                <xsd:annotation>
+                 <xsd:documentation>I=I=O==C==K==D=SAP_BOOL=A=C=L=000001=doc=execute &quot;COMMIT WORK AND WAIT&quot;</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="1"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+              </xsd:sequence>
+             </xsd:complexType>
+            </xsd:element>
+           </xsd:sequence>
+          </xsd:complexType>
+         </xsd:element>
+         <xsd:element name="Exception">
+          <xsd:complexType>
+           <xsd:sequence>
+            <xsd:element name="Name">
+             <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+               <xsd:enumeration value="ZCX_IMPORT_ERROR">
+                <xsd:annotation>
+                 <xsd:documentation>I=X=O==C==K==D==A==L==doc=Import-Errors</xsd:documentation>
+                </xsd:annotation>
+               </xsd:enumeration>
+               <xsd:enumeration value="CX_SY_DYN_CALL_ILLEGAL_METHOD">
+                <xsd:annotation>
+                 <xsd:documentation>I=X=O==C==K==D==A==L==doc=content-handler is invalid</xsd:documentation>
+                </xsd:annotation>
+               </xsd:enumeration>
+              </xsd:restriction>
+             </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="Message" minOccurs="0">
+             <xsd:complexType>
+              <xsd:sequence>
+               <xsd:element name="ID">
+                <xsd:annotation>
+                 <xsd:documentation>I==O==C==K==D=SYST_MSGID=A=C=L=000020=doc=ABAP System Field:</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="20"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="Number">
+                <xsd:annotation>
+                 <xsd:documentation>I==O==C==K==D=SYST_MSGNO=A=N=L=000003=doc=ABAP System Field:</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:pattern value="\d+"/>
+                  <xsd:maxLength value="3"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="Text" minOccurs="0" type="xsd:string"/>
+              </xsd:sequence>
+             </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Attributes" minOccurs="0">
+             <xsd:complexType>
+              <xsd:sequence>
+               <xsd:element name="V1" minOccurs="0">
+                <xsd:annotation>
+                 <xsd:documentation>I==O==C==K==D=SYST_MSGV=A=C=L=000050=doc=ABAP System Field:</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="V2" minOccurs="0">
+                <xsd:annotation>
+                 <xsd:documentation>I==O==C==K==D=SYST_MSGV=A=C=L=000050=doc=ABAP System Field:</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="V3" minOccurs="0">
+                <xsd:annotation>
+                 <xsd:documentation>I==O==C==K==D=SYST_MSGV=A=C=L=000050=doc=ABAP System Field:</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+               <xsd:element name="V4" minOccurs="0">
+                <xsd:annotation>
+                 <xsd:documentation>I==O==C==K==D=SYST_MSGV=A=C=L=000050=doc=ABAP System Field:</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                 <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                 </xsd:restriction>
+                </xsd:simpleType>
+               </xsd:element>
+              </xsd:sequence>
+             </xsd:complexType>
+            </xsd:element>
+           </xsd:sequence>
+          </xsd:complexType>
+         </xsd:element>
+        </xsd:schema>
+       </DEEP_STRU>
+       <DEEP_DATA>
+        <rfc:ZIMPORT_BUNDLE_FROM_TDC xmlns:rfc="http://xml.sap.com/2003/05/eCATT/rfc">
+         <IMPORTING>
+          <TDC>ZBOX_REBOOKING_SETUP</TDC>
+          <TDC_VERSION>1</TDC_VERSION>
+          <VARIANT>ECATTDEFAULT</VARIANT>
+          <CONTENT_HANDLER>REPLACE_CONTENT_ALL_TABLES</CONTENT_HANDLER>
+          <DO_COMMIT/>
+         </IMPORTING>
+         <Exception>
+          <rfc:ZCX_IMPORT_ERROR/>
+          <rfc:CX_SY_DYN_CALL_ILLEGAL_METHOD/>
+         </Exception>
+        </rfc:ZIMPORT_BUNDLE_FROM_TDC>
+       </DEEP_DATA>
+      </item>
+     </ETPAR_GUIX>
+    </PARAMETERS>
+   </ECSC>
+  </VERSION>
+ </VERSIONS>
+</abapGit>

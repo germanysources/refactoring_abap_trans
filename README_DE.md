@@ -14,6 +14,10 @@ soll sowohl die ausgedruckten Etiketten als auch die Datenbankupdates prüfen.
 Die Hilfsklasse `ZSPOOL_SNAPSHOTS` verifiziert den Etikettendruck mit Snapshots
 der erstellen SAP-Spoolaufträge.
 
+### Vorbereitung
+Am besten wird der Sofortdruck im Benutzerstamm deaktiviert.
+Unnötige Ausdrucke werden damit vermieden.
+
 ## Refaktisierungsherausforderung
 Der Legacy Code ist unordentlich und enthält viele "Anti-Pattern".
 Die Refaktorisierungsmaßnahmen haben folgende Zielsetzung:

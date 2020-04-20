@@ -16,6 +16,10 @@ To test the report `zbox_rebooking`, it was copied in the report `zbox_rebooking
 Snapshots from the SAP-spooljobs are created and
 compared with a little snapshot utility in class `ZSPOOL_SNAPSHOTS`.
 
+### Test preparation
+Deactivate immediately print out
+in your user profile. You avoid unnecessary print outs.
+
 ## Refactoring contest
 The legacy code is quite messy with many anti-pattern.
 The following refactoring targets are defined in this challenge:
